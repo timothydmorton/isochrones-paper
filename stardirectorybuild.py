@@ -13,8 +13,7 @@ for binary in starlist:
     if len(idsearch) == 0:
         print (f"Gaia ID not found for {binary}")
     else:
-        idstrip= [words.replace('Gaia DR2', '') for words in idsearch]
-        print(idstrip)             
+        idstrip= [words.replace('Gaia DR2', '') for words in idsearch]     
         job= Gaia.launch_job("SELECT \
         parallax, parallax_error, phot_g_mean_mag \
         FROM gaiadr2.gaia_source \
@@ -24,7 +23,6 @@ for binary in starlist:
         epar = results['parallax_error'][0]
         mag = results['phot_g_mean_mag'][0]
         binary = binary.replace(" ", "_")
-        print(binary)
         os.makedirs(binary, exist_ok=True) 
         f= open(f'{binary}/star.ini', 'w+')
         line1= f"parallax = {par}\n"
