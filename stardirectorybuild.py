@@ -8,7 +8,6 @@ starlist= open('binarylist.txt','r')
 for binary in starlist:
     binary = binary.strip()
     paramtable= Simbad.query_objectids(binary)
-    #paramtable.pprint(show_unit=True)
     idsearch=[x for x in paramtable['ID'] if 'Gaia DR2' in x]
     if len(idsearch) == 0:
         print (f"Gaia ID not found for {binary}")
@@ -32,12 +31,3 @@ for binary in starlist:
         f.writelines(isofile)
         f.close
         
-    
-    
- 
-######
-## open binary name
-## get mag and parallax
-## create directory with starname
-## move star.ini file into new folder
-## loop to next star
