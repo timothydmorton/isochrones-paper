@@ -17,9 +17,9 @@ for binary in starlist:
     #idtable= Simbad.query_objectids(binary)
     paramtable= Simbad.query_object(binary)
     pdparam= paramtable.to_pandas() #convert to Pandas table
-    pdparamfix= SkyCoord(pdparam['RA'], pdparam['DEC'], frame='icrs', unit='deg')
-    radeg = (pdparamfix.ra*u.deg)
-    decdeg = (pdparamfix.dec*u.deg)
+    pdparamfix= SkyCoord(pdparam['RA'], pdparam['DEC'], frame='icrs', unit=(u.hour, u.deg))
+    radeg = (pdparamfix.ra.deg)
+    decdeg = (pdparamfix.dec.deg)
     starra.append(radeg[0])
     stardec.append(decdeg[0])
     #starra.append(pdparam['RA'][0])
@@ -38,7 +38,7 @@ for binary in starlist:
 df['RA']   = pd.Series(starra) 
 df['DEC']  = pd.Series(stardec) 
 
-df= df.replace("deg2","")
+#df= df.replace("deg2","")
 print(df)
 df.to_csv('binarytable.txt')
 
