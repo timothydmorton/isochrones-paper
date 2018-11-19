@@ -1,3 +1,5 @@
+##Takes csv table of values and outputs a directory for each star filled with a star.ini file of its parameters
+
 import numpy as np
 import os
 import pandas as pd
