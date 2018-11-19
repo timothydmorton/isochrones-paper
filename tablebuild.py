@@ -1,3 +1,5 @@
+#used to create ra and dec table for Gaia crossmatching
+
 import numpy as np
 import os
 from astroquery.simbad import Simbad
