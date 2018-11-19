@@ -45,22 +45,25 @@ for index, star in df.iterrows():
     y_mean_psf_mag_error = star['y_mean_psf_mag_error']
     os.makedirs(name, exist_ok=True) 
     f= open(f'{name}/star.ini', 'w+')
+    line0  = f"GaiaID = {gaiaid}\n" #gaiadr2
     line1  = f"parallax = {parallax}, {parallax_error}\n" #gaiadr2
-    line2  = f"G = {phot_g_mean_mag}\n" #gaiadr2
-    line3  = f"BP = {phot_bp_mean_mag}\n" #gaiadr2
-    line4  = f"RP = {phot_rp_mean_mag} \n" #gaiadr2 
-    line5  = f"J = {j_m}, {j_msigcom} \n" #2mass
-    line6  = f"H = {h_m}, {h_msigcom}\n" #2mass
-    line7  = f"K = {ks_m}, {ks_msigcom}\n" #2mass
-    line8  = f"W1 = {w1mpro}, {w1mpro_error}\n" #allwise
-    line9  = f"W2 = {w2mpro}, {w2mpro_error}\n" #allwise
-    line10 = f"W3 = {w3mpro}, {w3mpro_error}\n" #allwise
-    line11 = f"W4 = {w4mpro}, {w4mpro_error}\n" #allwise
-    line12 = f"g = {g_mean_psf_mag}, {g_mean_psf_mag_error}\n" #panstarrs
-    line13 = f"r = {r_mean_psf_mag}, {r_mean_psf_mag_error}\n" #panstarrs
-    line14 = f"i = {i_mean_psf_mag}, {i_mean_psf_mag_error}\n" #panstarrs
-    line15 = f"z = {z_mean_psf_mag}, {z_mean_psf_mag_error}\n" #panstarrs
-    line16 = f"y = {y_mean_psf_mag}, {y_mean_psf_mag_error}\n" #panstarrs
-    isofile = line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16
+    line2  = f"RA = {ra}, {ra_error}\n" #gaiadr2
+    line3  = f"DEC = {dec}, {dec_error}\n" #gaiadr2
+    line4  = f"G = {phot_g_mean_mag}\n" #gaiadr2
+    line5  = f"BP = {phot_bp_mean_mag}\n" #gaiadr2
+    line6  = f"RP = {phot_rp_mean_mag} \n" #gaiadr2 
+    line7  = f"J = {j_m}, {j_msigcom} \n" #2mass
+    line8  = f"H = {h_m}, {h_msigcom}\n" #2mass
+    line9  = f"K = {ks_m}, {ks_msigcom}\n" #2mass
+    line10  = f"W1 = {w1mpro}, {w1mpro_error}\n" #allwise
+    line11 = f"W2 = {w2mpro}, {w2mpro_error}\n" #allwise
+    line12 = f"W3 = {w3mpro}, {w3mpro_error}\n" #allwise
+    line13 = f"W4 = {w4mpro}, {w4mpro_error}\n" #allwise
+    line14 = f"g = {g_mean_psf_mag}, {g_mean_psf_mag_error}\n" #panstarrs
+    line15 = f"r = {r_mean_psf_mag}, {r_mean_psf_mag_error}\n" #panstarrs
+    line16 = f"i = {i_mean_psf_mag}, {i_mean_psf_mag_error}\n" #panstarrs
+    line17 = f"z = {z_mean_psf_mag}, {z_mean_psf_mag_error}\n" #panstarrs
+    line18 = f"y = {y_mean_psf_mag}, {y_mean_psf_mag_error}\n" #panstarrs
+    isofile = line0, line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16, line17, line18
     f.writelines(isofile)
     f.close
