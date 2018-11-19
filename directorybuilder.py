@@ -54,11 +54,11 @@ for index, star in df.iterrows():
     line9  = f"W2 = {w2mpro}, {w2mpro_error}\n" #allwise
     line10 = f"W3 = {w3mpro}, {w3mpro_error}\n" #allwise
     line11 = f"W4 = {w4mpro}, {w4mpro_error}\n" #allwise
-    line12 = f"W1 = {g_mean_psf_mag}, {g_mean_psf_mag_error}\n" #panstarrs
-    line13 = f"W1 = {r_mean_psf_mag}, {r_mean_psf_mag_error}\n" #panstarrs
-    line14 = f"W1 = {i_mean_psf_mag}, {i_mean_psf_mag_error}\n" #panstarrs
-    line15 = f"W1 = {z_mean_psf_mag}, {z_mean_psf_mag_error}\n" #panstarrs
-    line16 = f"W1 = {y_mean_psf_mag}, {y_mean_psf_mag_error}\n" #panstarrs
+    line12 = f"g = {g_mean_psf_mag}, {g_mean_psf_mag_error}\n" #panstarrs
+    line13 = f"r = {r_mean_psf_mag}, {r_mean_psf_mag_error}\n" #panstarrs
+    line14 = f"i = {i_mean_psf_mag}, {i_mean_psf_mag_error}\n" #panstarrs
+    line15 = f"z = {z_mean_psf_mag}, {z_mean_psf_mag_error}\n" #panstarrs
+    line16 = f"y = {y_mean_psf_mag}, {y_mean_psf_mag_error}\n" #panstarrs
     isofile = line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16
     f.writelines(isofile)
     f.close
