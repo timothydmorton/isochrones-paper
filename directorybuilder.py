@@ -5,7 +5,7 @@ import os
 import pandas as pd
 
 
-df = pd.read_csv('fullgaiacrossmatch-result.csv')
+df = pd.read_csv('fullgaiacrossmatch-result.csv', keep_default_na=False)
 
 for index, star in df.iterrows():
     name                 = star['binaryname']
@@ -16,9 +16,25 @@ for index, star in df.iterrows():
     dec_error            = star['dec_error']
     parallax             = star['parallax']
     parallax_error       = star['parallax_error']
+    
     phot_g_mean_mag      = star['phot_g_mean_mag']
+    phot_flux_g          = star['phot_g_mean_flux']
+    mg                   = 25.6884 - 2.5*np.log10( phot_flux_g )
+    ephot_flux_g         = star['phot_g_mean_flux_error']
+    emg                  = 25.6884 - 2.5*np.log10( ephot_flux_g )
+    
     phot_bp_mean_mag     = star['phot_bp_mean_mag']
+    phot_flux_bp         = star['phot_bp_mean_flux']
+    mbp                  = 25.3514 - 2.5*np.log10( phot_flux_bp )
+    ephot_flux_bp        = star['phot_bp_mean_flux_error']
+    embp                 = 25.3514 - 2.5*np.log10( ephot_flux_bp )
+    
     phot_rp_mean_mag     = star['phot_rp_mean_mag']
+    phot_flux_rp         = star['phot_rp_mean_flux']
+    mrp                  = 24.7619 - 2.5*np.log10( phot_flux_rp )
+    ephot_flux_rp        = star['phot_rp_mean_flux_error']
+    emrp                 = 24.7619 - 2.5*np.log10( ephot_flux_rp )
+    
     j_m                  = star['j_m']
     j_msigcom            = star['j_msigcom']
     h_m                  = star['h_m']
@@ -43,15 +59,15 @@ for index, star in df.iterrows():
     z_mean_psf_mag_error = star['z_mean_psf_mag_error']
     y_mean_psf_mag       = star['y_mean_psf_mag']
     y_mean_psf_mag_error = star['y_mean_psf_mag_error']
-    os.makedirs(name, exist_ok=True) 
+    os.makedirs(name, exist_ok=True)
     f= open(f'{name}/star.ini', 'w+')
     line0  = f"GaiaID = {gaiaid}\n" #gaiadr2
     line1  = f"parallax = {parallax}, {parallax_error}\n" #gaiadr2
     line2  = f"RA = {ra}, {ra_error}\n" #gaiadr2
     line3  = f"DEC = {dec}, {dec_error}\n" #gaiadr2
-    line4  = f"G = {phot_g_mean_mag}\n" #gaiadr2
-    line5  = f"BP = {phot_bp_mean_mag}\n" #gaiadr2
-    line6  = f"RP = {phot_rp_mean_mag} \n" #gaiadr2 
+    line4  = f"G = {mg}, {emg}\n" #gaiadr2
+    line5  = f"BP = {mbp}, {embp}\n" #gaiadr2
+    line6  = f"RP = {mrp}, {emrp} \n" #gaiadr2 
     line7  = f"J = {j_m}, {j_msigcom} \n" #2mass
     line8  = f"H = {h_m}, {h_msigcom}\n" #2mass
     line9  = f"K = {ks_m}, {ks_msigcom}\n" #2mass
@@ -65,5 +81,8 @@ for index, star in df.iterrows():
     line17 = f"z = {z_mean_psf_mag}, {z_mean_psf_mag_error}\n" #panstarrs
     line18 = f"y = {y_mean_psf_mag}, {y_mean_psf_mag_error}\n" #panstarrs
     isofile = line0, line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15, line16, line17, line18
-    f.writelines(isofile)
+    for x in isofile:
+        if ' , ' not in x:
+            f.writelines(x)
+ 
     f.close
