@@ -21,19 +21,20 @@ for index, star in df.iterrows():
     phot_flux_g          = star['phot_g_mean_flux']
     mg                   = 25.6884 - 2.5*np.log10( phot_flux_g )
     ephot_flux_g         = star['phot_g_mean_flux_error']
-    emg                  = 25.6884 - 2.5*np.log10( ephot_flux_g )
+    #error  = (-2.5((photerror)/(flux*ln(10))))**2
+    emg                  = 2.5*((ephot_flux_g)/(phot_flux_g*np.log(10)))
     
     phot_bp_mean_mag     = star['phot_bp_mean_mag']
     phot_flux_bp         = star['phot_bp_mean_flux']
     mbp                  = 25.3514 - 2.5*np.log10( phot_flux_bp )
     ephot_flux_bp        = star['phot_bp_mean_flux_error']
-    embp                 = 25.3514 - 2.5*np.log10( ephot_flux_bp )
+    embp                 = 2.5*((ephot_flux_bp)/(phot_flux_bp*np.log(10)))
     
     phot_rp_mean_mag     = star['phot_rp_mean_mag']
     phot_flux_rp         = star['phot_rp_mean_flux']
     mrp                  = 24.7619 - 2.5*np.log10( phot_flux_rp )
     ephot_flux_rp        = star['phot_rp_mean_flux_error']
-    emrp                 = 24.7619 - 2.5*np.log10( ephot_flux_rp )
+    emrp                 = 2.5*((ephot_flux_rp)/(phot_flux_rp*np.log(10)))
     
     j_m                  = star['j_m']
     j_msigcom            = star['j_msigcom']
