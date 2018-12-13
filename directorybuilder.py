@@ -1,10 +1,11 @@
 ##Takes csv table of values and outputs a directory for each star filled with a star.ini file of its parameters
 
+##Python3 
 import numpy as np
 import os
 import pandas as pd
 
-
+#Read in a csv table which includes the following parameters
 df = pd.read_csv('fullgaiacrossmatch-result.csv', keep_default_na=False)
 
 for index, star in df.iterrows():
@@ -21,7 +22,6 @@ for index, star in df.iterrows():
     phot_flux_g          = star['phot_g_mean_flux']
     mg                   = 25.6884 - 2.5*np.log10( phot_flux_g )
     ephot_flux_g         = star['phot_g_mean_flux_error']
-    #error  = (-2.5((photerror)/(flux*ln(10))))**2
     emg                  = 2.5*((ephot_flux_g)/(phot_flux_g*np.log(10)))
     
     phot_bp_mean_mag     = star['phot_bp_mean_mag']
